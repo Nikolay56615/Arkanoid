@@ -53,7 +53,7 @@ stays ne
     fi
     #adding coordinates and checking for collision
     add r1,r0,r0
-    add r1,r0,r0
+    add r2,r3,r4
     if
         cmp r4,17
     is eq
