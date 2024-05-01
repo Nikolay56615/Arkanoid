@@ -38,48 +38,113 @@ stays ne
     if
         cmp r4,32
     is ge
-        push r1
-        shl r1
         neg r1
-        add r1,r4,r4
-        pop r1
+        dec r4
+        dec r4
     fi
     if
         cmp r4,-1
     is le
-        push r1
-        shl r1
         neg r1
-        add r1,r4,r4
-        pop r1
+        inc r4
+        inc r4
     fi
     move r4,r0
     add r2,r3,r4
     if
         cmp r4,-1
     is le
-        push r2
-        shl r2
-        neg r2
-        add r2,r4,r4
-        pop r2
+        neg r3
+        inc r4
+        inc r4
     fi
+    # if
+    #     cmp r4,29
+    # is eq
+    #     ldi r4,0xbeef
+    #     push r3 # stack has an y-velocity before collision with bat
+    #     ldb r4,r3 #now it has coordinate of bat
+    #     if
+    #         cmp r0,r3
+    #     is le, and
+    #         sub r3,2
+    #         cmp r0,r3
+    #     is ge
+    #     then
+    #         pop r3
+    #         neg r3
+    #         add r2,r3,r4
+    #     fi
+    # fi
     if
-        cmp r4,29
+        cmp r4,8
     is eq
-        ldi r4,0xbeef
-        push r3 # stack has an y-velocity before collision with bat
-        ldb r4,r3 #now it has coordinate of bat
+        ldi r5, bricks8
+        add r5,r0,r5
+        push r1
+        ld r5,r1
         if
-            cmp r0,r3
-        is le, and
-            sub r3,2
-            cmp r0,r3
-        is ge
-        then
-            pop r3
-            neg r3
-            add r2,r3,r4
+            cmp r1,1
+        is eq
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks7
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks7
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks7
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+            fi
+            
         fi
     fi
     move r4,r2    
@@ -90,14 +155,14 @@ x_bat: dc 1
 
 #suppose that field is 32x32, bricks take rows 17 and 18
 asect 0xdead #added this adress to check it in logisim RAM
-bricks1_1: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
-bricks1_2: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks1: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks2: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
-bricks2_1: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
-bricks2_2: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks4: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks5: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
-bricks3_1: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
-bricks3_2: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks7: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks8: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 end.
 #ya hz voobsche rabotaet eta zalupa ili net, poka probnyi variant
 # need to change coordinate system, because in this version ball can only reflect by corner of brick
