@@ -35,6 +35,347 @@ while
     cmp r2,31
 stays ne
     add r1,r0,r4
+
+    ###checking block collision sideways section
+    if
+        cmp r2,8 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is eq
+        ldi r5, bricks8
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks7
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+                neg r1
+
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks7
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+    if
+        cmp r2,7
+    is eq
+        ldi r5, bricks7
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks8
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks8
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+
+ if
+        cmp r2,5 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku
+    is eq
+        ldi r5, bricks5
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks4
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks4
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+    if
+        cmp r2,4
+    is eq
+        ldi r5, bricks4
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks5
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks5
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+
+ if
+        cmp r2,2 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku
+    is eq
+        ldi r5, bricks2
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks1
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks1
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+    if
+        cmp r2,1
+    is eq
+        ldi r5, bricks1
+        add r5,r4,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            inc r6
+            inc r5
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                dec r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                ldi r5, bricks2
+                add r5,r4,r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                inc r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            else #right pixel
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5, bricks2
+                add r5,r4,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r1
+                add r1,r4,r4
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+    ###checking block collision sideways section ended--------------------------------------------------------------------
+
+
+
+
+    #checking wall collisions by x-coordinate
     if
         cmp r4,32
     is ge
@@ -50,6 +391,8 @@ stays ne
         inc r4
     fi
     move r4,r0
+
+    ### checking collisions with upper wall
     add r2,r3,r4
     if
         cmp r4,-1
@@ -76,6 +419,10 @@ stays ne
     #         add r2,r3,r4
     #     fi
     # fi
+
+
+
+    ### y-checking collisions with blocks - above or below -------------------------------------------------------
     if
         cmp r4,8
     is eq
@@ -86,6 +433,7 @@ stays ne
         if
             cmp r1,1
         is eq
+            inc r6
             inc r5
             ld r5,r1
             if 
@@ -112,6 +460,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
+                    neg r2
+                    add r2,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -126,6 +476,9 @@ stays ne
                     st r5,r1
                     inc r5
                     st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
                 fi
 
             else #right pixel - correct
@@ -143,10 +496,424 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
+                neg r2
+                add r2,r4
             fi
-            
+    
         fi
     fi
+
+
+
+
+    if
+        cmp r4,7
+    is eq
+        ldi r5, bricks7
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            inc r6
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks8
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks8
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks8
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r2
+                add r2,r4
+            fi
+    
+        fi
+    fi
+
+    if
+        cmp r4,5
+    is eq
+        ldi r5, bricks5
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            inc r6
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks4
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks4
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks4
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r2
+                add r2,r4
+            fi
+    
+        fi
+    fi
+
+
+
+
+    if
+        cmp r4,4
+    is eq
+        ldi r5, bricks4
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            inc r6
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks5
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks5
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks5
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r2
+                add r2,r4
+            fi
+    
+        fi
+    fi
+
+    if
+        cmp r4,2
+    is eq
+        ldi r5, bricks2
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            inc r6
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks1
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks1
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks1
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r2
+                add r2,r4
+            fi
+    
+        fi
+    fi
+
+
+
+
+    if
+        cmp r4,1
+    is eq
+        ldi r5, bricks1
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            inc r6
+            inc r5
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                dec r5
+                dec r5
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks2
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    dec r5
+                    dec r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                else #left pixel - correct
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    ldi r5,bricks2
+                    add r5,r0,r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    inc r5
+                    st r5,r1
+                    pop r1
+                    neg r2
+                    add r2,r4
+                fi
+
+            else #right pixel - correct
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                ldi r5,bricks2
+                add r5,r0,r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                dec r5
+                st r5,r1
+                pop r1
+                neg r2
+                add r2,r4
+            fi
+    
+        fi
+    fi
+    ### y-checking collisions with blocks - above or below -------------------------------------------------------
+
+
     move r4,r2    
 wend
 halt
