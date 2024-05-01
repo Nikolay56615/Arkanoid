@@ -460,8 +460,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -477,8 +477,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -496,8 +496,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
@@ -543,8 +543,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -560,8 +560,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -579,8 +579,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
@@ -623,8 +623,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -640,8 +640,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -659,8 +659,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
@@ -706,8 +706,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -723,8 +723,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -742,8 +742,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
@@ -786,8 +786,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -803,8 +803,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -822,8 +822,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
@@ -869,8 +869,8 @@ stays ne
                     dec r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 else #left pixel - correct
                     inc r5
                     st r5,r1
@@ -886,8 +886,8 @@ stays ne
                     inc r5
                     st r5,r1
                     pop r1
-                    neg r2
-                    add r2,r4
+                    neg r3
+                    add r3,r4
                 fi
 
             else #right pixel - correct
@@ -905,8 +905,8 @@ stays ne
                 dec r5
                 st r5,r1
                 pop r1
-                neg r2
-                add r2,r4
+                neg r3
+                add r3,r4
             fi
     
         fi
