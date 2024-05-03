@@ -35,8 +35,25 @@ ldi r6,0xcccc
 while
     cmp r2,31
 stays lt
-    add r1,r0,r0
+    add r1,r0,r4
+    #checking wall collisions by x-coordinate
+    if
+        cmp r4,32
+    is ge
+        neg r1
+        dec r4
+        dec r0
+    fi
+    if
+        cmp r4,-1
+    is le
+        neg r1
+        inc r4
+        inc r4
+    fi
+    move r4,r0
 
+    
     ###checking block collision sideways section
     if
         cmp r2,8 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
@@ -420,36 +437,16 @@ stays lt
 
     ###checking block collision sideways section ended--------------------------------------------------------------------
 
-
-
-
-    #checking wall collisions by x-coordinate
-    if
-        cmp r0,32
-    is ge
-        neg r1
-        dec r0
-        dec r0
-    fi
-    if
-        cmp r0,-1
-    is le
-        neg r1
-        inc r0
-        inc r0
-    fi
-    #move r4,r0
-
     ### checking collisions with upper wall
-    add r2,r3,r2
+    add r2,r3,r4
     if
-        cmp r2,-1
+        cmp r4,-1
     is le
         neg r3
-        inc r2
-        inc r2
+        inc r4
+        inc r4
     fi
-
+    move r4,r2
 
     if
         cmp r2,29
