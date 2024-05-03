@@ -52,7 +52,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -93,6 +93,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -113,7 +114,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -153,6 +154,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -174,7 +176,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -215,6 +217,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -235,7 +238,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -276,6 +279,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -296,7 +300,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -336,6 +340,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -356,7 +361,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -397,6 +402,7 @@ stays ne
                 sub r5,2
                 st r5,r1
                 pop r1
+                neg r1
             fi
         else
             pop r1
@@ -498,7 +504,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -590,7 +596,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -679,7 +685,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -773,7 +779,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -864,7 +870,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
@@ -958,7 +964,7 @@ stays ne
             push r5
             ld r6,r5
             inc r5
-            st r6,r5
+            stb r6,r5
             pop r5
             add r5,2
             ld r5,r1
