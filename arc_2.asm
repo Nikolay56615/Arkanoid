@@ -56,6 +56,138 @@ stays lt
     
     ###checking block collision sideways section
     if
+        cmp r2,11 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is eq
+        ldi r5, bricks11
+        add r5,r0,r5
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            push r5
+            ld r6,r5
+            inc r5
+            stb r6,r5
+            pop r5
+            add r5,2
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                sub r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                ldi r5, bricks10
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                add r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                pop r1
+                neg r1
+
+            else #right pixel
+
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                ldi r5, bricks10
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                pop r1
+                neg r1
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+
+    if
+        cmp r2,10 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is eq
+        ldi r5, bricks10
+        add r5,r0,r5
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1, 1
+        is eq # we need to know if this left or right pixel
+            push r5
+            ld r6,r5
+            inc r5
+            stb r6,r5
+            pop r5
+            add r5,2
+            ld r5,r1
+            if
+                cmp r1,1
+            is eq # left pixel
+                dec r1
+                sub r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                ldi r5, bricks11
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                add r5,2
+                st r5,r1
+                add r5,2
+                st r5,r1
+                pop r1
+                neg r1
+
+            else #right pixel
+
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                ldi r5, bricks11
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                pop r1
+                neg r1
+            fi
+        else
+            pop r1
+        fi
+    fi
+
+
+
+
+
+
+    if
         cmp r2,8 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
     is eq
         ldi r5, bricks8
@@ -495,6 +627,187 @@ stays lt
 
 
     ### y-checking collisions with blocks - above or below -------------------------------------------------------
+    if
+        cmp r2,11
+    is eq
+        ldi r5, bricks11
+        add r5,r0,r5
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            push r5
+            ld r6,r5
+            inc r5
+            stb r6,r5
+            pop r5
+            add r5,2
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                sub r5,2
+                sub r5,2
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    ldi r5,bricks10
+                    add r5,r0,r5
+                    add r5,r0,r5
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    sub r5,2
+                    sub r5,2
+                    st r5,r1
+                    pop r1
+                    neg r3
+                    #add r3,r2
+                else #left pixel - correct
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    ldi r5,bricks10
+                    add r5,r0,r5
+                    add r5,r0,r5
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    pop r1
+                    neg r3
+                    #add r3,r2
+                fi
+
+            else #right pixel - correct
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                ldi r5,bricks10
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                pop r1
+                neg r3
+                #add r3,r2
+            fi
+        else
+            pop r1
+        fi
+    fi
+    
+    if
+        cmp r2,10
+    is eq
+        ldi r5, bricks10
+        add r5,r0,r5
+        add r5,r0,r5
+        push r1
+        ld r5,r1
+        if
+            cmp r1,1
+        is eq
+            push r5
+            ld r6,r5
+            inc r5
+            stb r6,r5
+            pop r5
+            add r5,2
+            ld r5,r1
+            if 
+                cmp r1,1
+            is eq
+                sub r5,2
+                sub r5,2
+                ld r5,r1
+                if
+                    cmp r1,1
+                is eq #check for middle pixel - correct
+                    dec r1
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    ldi r5,bricks11
+                    add r5,r0,r5
+                    add r5,r0,r5
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    sub r5,2
+                    sub r5,2
+                    st r5,r1
+                    pop r1
+                    neg r3
+                    #add r3,r2
+                else #left pixel - correct
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    ldi r5,bricks11
+                    add r5,r0,r5
+                    add r5,r0,r5
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    add r5,2
+                    st r5,r1
+                    pop r1
+                    neg r3
+                    #add r3,r2
+                fi
+
+            else #right pixel - correct
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                ldi r5,bricks11
+                add r5,r0,r5
+                add r5,r0,r5
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                sub r5,2
+                st r5,r1
+                pop r1
+                neg r3
+                #add r3,r2
+            fi
+        else
+            pop r1
+        fi
+    fi
+    
+    
+    
+    
     if
         cmp r2,8
     is eq
@@ -1052,5 +1365,8 @@ bricks5: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
 bricks7: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 bricks8: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+
+bricks10: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+bricks11: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 end.
 # need to change coordinate system, because in this version ball can only reflect by corner of brick
