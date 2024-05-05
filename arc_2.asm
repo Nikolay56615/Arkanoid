@@ -42,7 +42,7 @@ stays lt
     is ge
         neg r1
         dec r4
-        dec r0
+        dec r4
     fi
     if
         cmp r4,-1
