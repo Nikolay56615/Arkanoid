@@ -25,48 +25,61 @@ rsect main
 
 main>
 #r4 - temporary register for x/y coordinate to pre-calculate
-#r5 - has an adress of brick
-#r6 - score
-ldi r0,16 #x-coordinate
-ldi r1,1 #x-velocity
-ldi r2,28 #y-coordinate
-ldi r3,-1 # y-velocity
-ldi r6,0xcccc
+#r5 - has an adress of brick 
+#r6 - score (0xcccc)
+ldi r0,128 #x-coordinate
+ldi r1,-11 #x-velocity
+ldi r2,224 #y-coordinate
+ldi r3,-4 # y-velocity
+ldi r6,248
 while
-    cmp r2,31
+    ldi r6,248
+    cmp r2,r6
 stays lt
     add r1,r0,r4
     #checking wall collisions by x-coordinate
-    if
-        cmp r4,32
+    if 
+        ldi r6, 256
+        cmp r4,r6
     is ge
         neg r1
-        dec r4
-        dec r0
+        add r1,r4,r4
     fi
     if
-        cmp r4,-1
-    is le
+        cmp r4,0
+    is lt
         neg r1
-        inc r4
-        inc r4
+        add r1,r4,r4
     fi
     move r4,r0
 
     
     ###checking block collision sideways section
     if
-        cmp r2,11 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,88
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,95
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks11
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        #ldi r6,0b0000000000011111
+        #and r6, r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -84,8 +97,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks10
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -103,8 +116,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks10
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -120,17 +133,30 @@ stays lt
 
 
     if
-        cmp r2,10 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,80
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,87
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks10
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        ldi r6,0b0000000000011111
+        and r6, r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -148,8 +174,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks11
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -167,8 +193,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks11
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -188,17 +214,28 @@ stays lt
 
 
     if
-        cmp r2,8 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,64
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,71
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks8
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -216,8 +253,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks7
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -235,8 +272,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks7
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -251,17 +288,28 @@ stays lt
     fi
 
     if
-        cmp r2,7 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,56
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,63
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks7
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -279,8 +327,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks8
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -298,8 +346,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks8
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -315,17 +363,28 @@ stays lt
 
 
     if
-        cmp r2,5 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,40
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,47
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks5
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -343,8 +402,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks4
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -362,8 +421,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks4
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -378,17 +437,28 @@ stays lt
     fi
 
     if
-        cmp r2,4 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,32
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,39
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks4
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -406,8 +476,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks5
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -425,8 +495,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks5
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -442,17 +512,28 @@ stays lt
 
 
     if
-        cmp r2,2 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,16
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,23
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks2
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -470,8 +551,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks1
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -489,8 +570,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks1
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -505,17 +586,28 @@ stays lt
     fi
 
     if
-        cmp r2,1 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is eq
+        ldi r6,8
+        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+    is ge, and
+        ldi r6,15
+        cmp r2,r6
+    is le
+    then
+
         ldi r5, bricks1
-        add r5,r0,r5
-        add r5,r0,r5
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1, 1
         is eq # we need to know if this left or right pixel
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -533,8 +625,8 @@ stays lt
                 add r5,2
                 st r5,r1
                 ldi r5, bricks2
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 add r5,2
                 st r5,r1
@@ -552,8 +644,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5, bricks2
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -572,26 +664,28 @@ stays lt
     ### checking collisions with upper wall
     add r2,r3,r4
     if
-        cmp r4,-1
-    is le
+        cmp r4,0
+    is lt
         neg r3
-        inc r4
-        inc r4
+        add r3,r4
     fi
     move r4,r2
 
     if
-        cmp r2,29
-    is eq
-        if
-            cmp r1,0
-        is eq
-            dec r1
-        fi
+        ldi r6,232
+        cmp r2,r6
+    is ge, and
+        ldi r6,239
+    is le
+    then
         ldi r5,0xbeef
         ld r5,r4 #now it has coordinate of bat
+        move r0,r6
+        shr r6
+        shr r6
+        shr r6
         if
-            cmp r0,r4
+            cmp r6,r4
         is eq
             neg r3
             neg r1
@@ -601,7 +695,7 @@ stays lt
         else
             dec r4
             if
-                cmp r0,r4
+                cmp r6,r4
             is eq
                 neg r3
                 #add r2,r3,r2
@@ -610,7 +704,7 @@ stays lt
             else
                 dec r4
                 if
-                    cmp r0,r4
+                    cmp r6,r4
                 is eq
                     neg r3
                     neg r1
@@ -628,17 +722,27 @@ stays lt
 
     ### y-checking collisions with blocks - above or below -------------------------------------------------------
     if
-        cmp r2,11
-    is eq
+        ldi r6,88
+        cmp r2,r6
+    is ge, and
+        ldi r6,95
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks11
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -661,8 +765,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks10
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -680,8 +784,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks10
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -700,8 +804,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks10
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -717,17 +821,28 @@ stays lt
     fi
     
     if
-        cmp r2,10
-    is eq
+        ldi r6,80
+        cmp r2,r6
+    is ge, and
+        ldi r6,87
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
+        
         ldi r5, bricks10
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -750,8 +865,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks11
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -769,8 +884,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks11
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -789,8 +904,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks11
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -809,17 +924,27 @@ stays lt
     
     
     if
-        cmp r2,8
-    is eq
+        ldi r6,64
+        cmp r2,r6
+    is ge, and
+        ldi r6,71
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks8
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -842,8 +967,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks7
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -861,8 +986,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks7
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -881,8 +1006,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks7
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -901,17 +1026,27 @@ stays lt
 
 
     if
-        cmp r2,7
-    is eq
+        ldi r6,56
+        cmp r2,r6
+    is ge, and
+        ldi r6,63
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks7
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -934,8 +1069,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks8
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -953,8 +1088,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks8
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -973,8 +1108,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks8
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -990,17 +1125,27 @@ stays lt
     fi
 
     if
-        cmp r2,5
-    is eq
+        ldi r6,40
+        cmp r2,r6
+    is ge, and
+        ldi r6,47
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks5
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -1023,8 +1168,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks4
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1042,8 +1187,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks4
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1062,8 +1207,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks4
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -1082,17 +1227,27 @@ stays lt
 
 
     if
-        cmp r2,4
-    is eq
+        ldi r6,32
+        cmp r2,r6
+    is ge, and
+        ldi r6,39
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks4
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -1115,8 +1270,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks5
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1134,8 +1289,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks5
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1154,8 +1309,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks5
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -1171,17 +1326,27 @@ stays lt
     fi
 
     if
-        cmp r2,2
-    is eq
+        ldi r6,16
+        cmp r2,r6
+    is ge, and
+        ldi r6,23
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks2
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -1204,8 +1369,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks1
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1223,8 +1388,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks1
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1243,8 +1408,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks1
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
@@ -1263,17 +1428,27 @@ stays lt
 
 
     if
-        cmp r2,1
-    is eq
+        ldi r6,8
+        cmp r2,r6
+    is ge, and
+        ldi r6,15
+        cmp r2,r6
+    is le
+    then
+        move r0,r4
+        shr r4
+        shr r4
+        shr r4
         ldi r5, bricks1
-        add r5,r0,r5
-        add r5,r0,r5
+        add r5,r4,r5
+        add r5,r4,r5
         push r1
         ld r5,r1
         if
             cmp r1,1
         is eq
             push r5
+            ldi r6,0xcccc
             ld r6,r5
             inc r5
             stb r6,r5
@@ -1296,8 +1471,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks2
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1315,8 +1490,8 @@ stays lt
                     add r5,2
                     st r5,r1
                     ldi r5,bricks2
-                    add r5,r0,r5
-                    add r5,r0,r5
+                    add r5,r4,r5
+                    add r5,r4,r5
                     st r5,r1
                     add r5,2
                     st r5,r1
@@ -1335,8 +1510,8 @@ stays lt
                 sub r5,2
                 st r5,r1
                 ldi r5,bricks2
-                add r5,r0,r5
-                add r5,r0,r5
+                add r5,r4,r5
+                add r5,r4,r5
                 st r5,r1
                 sub r5,2
                 st r5,r1
