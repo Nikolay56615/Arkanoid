@@ -27,6 +27,7 @@ main>
 #r4 - temporary register for x/y coordinate to pre-calculate
 #r5 - has an adress of brick 
 #r6 - score (0xcccc)
+ei
 ldi r0,128 #x-coordinate
 ldi r1,0xa000 #x-velocity
 ldb r1,r1
@@ -36,23 +37,40 @@ ldb r3,r3
 neg r3
 ldi r6,248
 while
-    ldi r6,248
-    cmp r2,r6
-stays lt
     add r1,r0,r4
     #checking wall collisions by x-coordinate
     if 
-        ldi r6, 256
+        ldi r6, 255
         cmp r4,r6
-    is ge
+    is gt
         neg r1
         add r1,r4,r4
+        ldi r6,0xa000
+        ldb r6,r6
+        if
+            cmp r1,0
+        is lt
+            neg r6
+            move r6,r1
+        else
+            move r6,r1
+        fi
     fi
     if
         cmp r4,0
     is lt
         neg r1
         add r1,r4,r4
+        ldi r6,0xa000
+        ldb r6,r6
+        if
+            cmp r1,0
+        is lt
+            neg r6
+            move r6,r1
+        else
+            move r6,r1
+        fi
     fi
     move r4,r0
 
@@ -828,6 +846,16 @@ stays lt
     is lt
         neg r3
         add r3,r4
+        ldi r6,0xa001
+        ldb r6,r6
+        if
+            cmp r3,0
+        is lt
+            neg r6
+            move r6,r3
+        else
+            move r6,r3
+        fi
     fi
     move r4,r2
 
@@ -836,6 +864,7 @@ stays lt
         cmp r2,r6
     is ge, and
         ldi r6,239
+        cmp r2,r6
     is le
     then
         ldi r5,0xbeef
@@ -849,6 +878,16 @@ stays lt
         is eq
             neg r3
             neg r1
+            ldi r6,0xa001
+            ldb r6,r6
+            if
+                cmp r3,0
+            is lt
+                neg r6
+                move r6,r3
+            else
+                move r6,r3
+            fi
             #add r2,r3,r2
             #add r0,r1,r0
             
@@ -878,6 +917,16 @@ stays lt
                 is eq
                     neg r3
                     neg r1
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r2,r3,r2
                     #add r0,r1,r0
                     
@@ -1953,5 +2002,7 @@ bricks8: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
 bricks10: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 bricks11: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+
+
 end.
 # need to change coordinate system, because in this version ball can only reflect by corner of brick
