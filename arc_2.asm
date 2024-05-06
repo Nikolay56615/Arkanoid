@@ -47,8 +47,6 @@ stays lt
     is ge
         neg r1
         add r1,r4,r4
-        dec r4
-        dec r4
     fi
     if
         cmp r4,0
