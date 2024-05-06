@@ -43,12 +43,9 @@ stays lt
         cmp r4,r6
     is ge
         neg r1
-<<<<<<< HEAD
         add r1,r4,r4
-=======
         dec r4
         dec r4
->>>>>>> b3c4b5afb9b904ff6c1f0343815b6868b9462458
     fi
     if
         cmp r4,0
