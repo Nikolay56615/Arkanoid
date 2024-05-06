@@ -28,9 +28,12 @@ main>
 #r5 - has an adress of brick 
 #r6 - score (0xcccc)
 ldi r0,128 #x-coordinate
-ldi r1,-11 #x-velocity
+ldi r1,0xa000 #x-velocity
+ldb r1,r1
 ldi r2,224 #y-coordinate
-ldi r3,-4 # y-velocity
+ldi r3,0xa001 # y-velocity
+ldb r3,r3
+neg r3
 ldi r6,248
 while
     ldi r6,248
@@ -43,12 +46,7 @@ stays lt
         cmp r4,r6
     is ge
         neg r1
-<<<<<<< HEAD
         add r1,r4,r4
-=======
-        dec r4
-        dec r4
->>>>>>> b3c4b5afb9b904ff6c1f0343815b6868b9462458
     fi
     if
         cmp r4,0
@@ -111,7 +109,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
-
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             else #right pixel
 
                 sub r5,2
@@ -130,6 +137,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -151,8 +168,8 @@ stays lt
         shr r4
         shr r4
         shr r4
-        ldi r6,0b0000000000011111
-        and r6, r4
+        #ldi r6,0b0000000000011111
+        #and r6, r4
         add r5,r4,r5
         add r5,r4,r5
         push r1
@@ -188,6 +205,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
 
             else #right pixel
 
@@ -207,6 +234,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -267,7 +304,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
-
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             else #right pixel
 
                 sub r5,2
@@ -286,6 +332,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -341,6 +397,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
 
             else #right pixel
 
@@ -360,6 +426,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -416,6 +492,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
 
             else #right pixel
 
@@ -435,6 +521,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -490,6 +586,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
 
             else #right pixel
 
@@ -509,6 +615,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -565,7 +681,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
-
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             else #right pixel
 
                 sub r5,2
@@ -584,6 +709,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -639,6 +774,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
 
             else #right pixel
 
@@ -658,6 +803,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r1
+                ldi r6,0xa000
+                ldb r6,r6
+                if
+                    cmp r1,0
+                is lt
+                    neg r6
+                    move r6,r1
+                else
+                    move r6,r1
+                fi
             fi
         else
             pop r1
@@ -703,6 +858,16 @@ stays lt
                 cmp r6,r4
             is eq
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r2,r3,r2
                 #add r0,r1,r0
                 
@@ -780,6 +945,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -798,6 +973,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -818,6 +1003,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -880,6 +1075,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -898,6 +1103,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -918,6 +1133,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -982,6 +1207,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1000,6 +1235,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1020,6 +1265,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -1084,6 +1339,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1102,6 +1367,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1122,6 +1397,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -1183,6 +1468,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1201,6 +1496,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1221,6 +1526,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -1285,6 +1600,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1303,6 +1628,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1323,6 +1658,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -1384,6 +1729,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1402,6 +1757,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1422,6 +1787,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
@@ -1486,6 +1861,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 else #left pixel - correct
                     add r5,2
@@ -1504,6 +1889,16 @@ stays lt
                     st r5,r1
                     pop r1
                     neg r3
+                    ldi r6,0xa001
+                    ldb r6,r6
+                    if
+                        cmp r3,0
+                    is lt
+                        neg r6
+                        move r6,r3
+                    else
+                        move r6,r3
+                    fi
                     #add r3,r2
                 fi
 
@@ -1524,6 +1919,16 @@ stays lt
                 st r5,r1
                 pop r1
                 neg r3
+                ldi r6,0xa001
+                ldb r6,r6
+                if
+                    cmp r3,0
+                is lt
+                    neg r6
+                    move r6,r3
+                else
+                    move r6,r3
+                fi
                 #add r3,r2
             fi
         else
