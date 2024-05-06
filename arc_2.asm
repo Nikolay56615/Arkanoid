@@ -37,6 +37,9 @@ ldb r3,r3
 neg r3
 ldi r6,248
 while
+    ldi r6,248
+    cmp r2,r6
+stays lt
     add r1,r0,r4
     #checking wall collisions by x-coordinate
     if 
