@@ -1054,8 +1054,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="upl"/>
     </comp>
     <comp lib="4" loc="(140,230)" name="Counter">
-      <a name="width" val="6"/>
-      <a name="max" val="0x20"/>
+      <a name="width" val="5"/>
+      <a name="max" val="0x18"/>
     </comp>
     <comp lib="0" loc="(490,200)" name="Tunnel">
       <a name="width" val="8"/>
