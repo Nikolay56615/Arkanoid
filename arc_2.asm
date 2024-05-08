@@ -40,6 +40,47 @@ while
     ldi r6,248
     cmp r2,r6
 stays lt
+    ldi r5,0xa002
+    ldb r5,r5
+    if
+        cmp r5,1
+    is eq
+        ldi r6,0xcccc
+        ldi r5,0
+        st r6,r5
+        jsr restart
+    fi
+    ldi r6,0xcccc
+    ld r6,r6
+    if
+        cmp r6,24
+    is eq,and
+        ldi r5,0xb001
+        ldb r5,r5
+        cmp r5,0
+    is eq
+    then
+        jsr restart
+    fi
+
+    if
+        ldi r5,48
+        cmp r6,r5
+    is eq,and
+        ldi r5,0xb002
+        ldb r5,r5
+        cmp r5,0
+    is eq
+    then
+        jsr restart
+    fi
+
+    if
+        ldi r5,72
+        cmp r6,r5
+    is eq
+        halt
+    fi
     add r1,r0,r4
     #checking wall collisions by x-coordinate
     if 
@@ -653,192 +694,7 @@ stays lt
     fi
 
 
-    if
-        ldi r6,16
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is ge, and
-        ldi r6,23
-        cmp r2,r6
-    is le
-    then
-
-        ldi r5, bricks2
-        move r0,r4
-        shr r4
-        shr r4
-        shr r4
-        add r5,r4,r5
-        add r5,r4,r5
-        push r1
-        ld r5,r1
-        if
-            cmp r1, 1
-        is eq # we need to know if this left or right pixel
-            push r5
-            ldi r6,0xcccc
-            ld r6,r5
-            inc r5
-            stb r6,r5
-            pop r5
-            add r5,2
-            ld r5,r1
-            if
-                cmp r1,1
-            is eq # left pixel
-                dec r1
-                sub r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                ldi r5, bricks1
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                add r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                pop r1
-                neg r1
-                ldi r6,0xa000
-                ldb r6,r6
-                if
-                    cmp r1,0
-                is lt
-                    neg r6
-                    move r6,r1
-                else
-                    move r6,r1
-                fi
-            else #right pixel
-
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                ldi r5, bricks1
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                pop r1
-                neg r1
-                ldi r6,0xa000
-                ldb r6,r6
-                if
-                    cmp r1,0
-                is lt
-                    neg r6
-                    move r6,r1
-                else
-                    move r6,r1
-                fi
-            fi
-        else
-            pop r1
-        fi
-    fi
-
-    if
-        ldi r6,8
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
-    is ge, and
-        ldi r6,15
-        cmp r2,r6
-    is le
-    then
-
-        ldi r5, bricks1
-        move r0,r4
-        shr r4
-        shr r4
-        shr r4
-        add r5,r4,r5
-        add r5,r4,r5
-        push r1
-        ld r5,r1
-        if
-            cmp r1, 1
-        is eq # we need to know if this left or right pixel
-            push r5
-            ldi r6,0xcccc
-            ld r6,r5
-            inc r5
-            stb r6,r5
-            pop r5
-            add r5,2
-            ld r5,r1
-            if
-                cmp r1,1
-            is eq # left pixel
-                dec r1
-                sub r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                ldi r5, bricks2
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                add r5,2
-                st r5,r1
-                add r5,2
-                st r5,r1
-                pop r1
-                neg r1
-                ldi r6,0xa000
-                ldb r6,r6
-                if
-                    cmp r1,0
-                is lt
-                    neg r6
-                    move r6,r1
-                else
-                    move r6,r1
-                fi
-
-            else #right pixel
-
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                ldi r5, bricks2
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                pop r1
-                neg r1
-                ldi r6,0xa000
-                ldb r6,r6
-                if
-                    cmp r1,0
-                is lt
-                    neg r6
-                    move r6,r1
-                else
-                    move r6,r1
-                fi
-            fi
-        else
-            pop r1
-        fi
-    fi
+    
 
     ###checking block collision sideways section ended--------------------------------------------------------------------
 
@@ -1595,9 +1451,6 @@ stays lt
         fi
     fi
 
-
-
-
     if
         ldi r6,32
         cmp r2,r6
@@ -1727,276 +1580,139 @@ stays lt
         fi
     fi
 
-    if
-        ldi r6,16
-        cmp r2,r6
-    is ge, and
-        ldi r6,23
-        cmp r2,r6
-    is le
-    then
-        move r0,r4
-        shr r4
-        shr r4
-        shr r4
-        ldi r5, bricks2
-        add r5,r4,r5
-        add r5,r4,r5
-        push r1
-        ld r5,r1
-        if
-            cmp r1,1
-        is eq
-            push r5
-            ldi r6,0xcccc
-            ld r6,r5
-            inc r5
-            stb r6,r5
-            pop r5
-            add r5,2
-            ld r5,r1
-            if 
-                cmp r1,1
-            is eq
-                sub r5,2
-                sub r5,2
-                ld r5,r1
-                if
-                    cmp r1,1
-                is eq #check for middle pixel - correct
-                    dec r1
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    ldi r5,bricks1
-                    add r5,r4,r5
-                    add r5,r4,r5
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    sub r5,2
-                    sub r5,2
-                    st r5,r1
-                    pop r1
-                    neg r3
-                    ldi r6,0xa001
-                    ldb r6,r6
-                    if
-                        cmp r3,0
-                    is lt
-                        neg r6
-                        move r6,r3
-                    else
-                        move r6,r3
-                    fi
-                    #add r3,r2
-                else #left pixel - correct
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    ldi r5,bricks1
-                    add r5,r4,r5
-                    add r5,r4,r5
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    pop r1
-                    neg r3
-                    ldi r6,0xa001
-                    ldb r6,r6
-                    if
-                        cmp r3,0
-                    is lt
-                        neg r6
-                        move r6,r3
-                    else
-                        move r6,r3
-                    fi
-                    #add r3,r2
-                fi
-
-            else #right pixel - correct
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                ldi r5,bricks1
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                pop r1
-                neg r3
-                ldi r6,0xa001
-                ldb r6,r6
-                if
-                    cmp r3,0
-                is lt
-                    neg r6
-                    move r6,r3
-                else
-                    move r6,r3
-                fi
-                #add r3,r2
-            fi
-        else
-            pop r1
-        fi
-    fi
-
-
-
-
-    if
-        ldi r6,8
-        cmp r2,r6
-    is ge, and
-        ldi r6,15
-        cmp r2,r6
-    is le
-    then
-        move r0,r4
-        shr r4
-        shr r4
-        shr r4
-        ldi r5, bricks1
-        add r5,r4,r5
-        add r5,r4,r5
-        push r1
-        ld r5,r1
-        if
-            cmp r1,1
-        is eq
-            push r5
-            ldi r6,0xcccc
-            ld r6,r5
-            inc r5
-            stb r6,r5
-            pop r5
-            add r5,2
-            ld r5,r1
-            if 
-                cmp r1,1
-            is eq
-                sub r5,2
-                sub r5,2
-                ld r5,r1
-                if
-                    cmp r1,1
-                is eq #check for middle pixel - correct
-                    dec r1
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    ldi r5,bricks2
-                    add r5,r4,r5
-                    add r5,r4,r5
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    sub r5,2
-                    sub r5,2
-                    st r5,r1
-                    pop r1
-                    neg r3
-                    ldi r6,0xa001
-                    ldb r6,r6
-                    if
-                        cmp r3,0
-                    is lt
-                        neg r6
-                        move r6,r3
-                    else
-                        move r6,r3
-                    fi
-                    #add r3,r2
-                else #left pixel - correct
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    ldi r5,bricks2
-                    add r5,r4,r5
-                    add r5,r4,r5
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    add r5,2
-                    st r5,r1
-                    pop r1
-                    neg r3
-                    ldi r6,0xa001
-                    ldb r6,r6
-                    if
-                        cmp r3,0
-                    is lt
-                        neg r6
-                        move r6,r3
-                    else
-                        move r6,r3
-                    fi
-                    #add r3,r2
-                fi
-
-            else #right pixel - correct
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                ldi r5,bricks2
-                add r5,r4,r5
-                add r5,r4,r5
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                sub r5,2
-                st r5,r1
-                pop r1
-                neg r3
-                ldi r6,0xa001
-                ldb r6,r6
-                if
-                    cmp r3,0
-                is lt
-                    neg r6
-                    move r6,r3
-                else
-                    move r6,r3
-                fi
-                #add r3,r2
-            fi
-        else
-            pop r1
-        fi
-    fi
+    
     ### y-checking collisions with blocks - above or below -------------------------------------------------------
 
 
     #move r4,r2    
 wend
+ldi r6,2
+while
+    cmp r6,2
+stays eq
+    ldi r5,0xa002
+    ldb r5,r5
+    if
+        cmp r5,1
+    is eq
+        ldi r6,0xcccc
+        ldi r5,0
+        st r6,r5
+        jsr restart
+    fi
+wend
 halt
-asect 0xdead #added this adress to check it in logisim RAM
-bricks1: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
-bricks2: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
+#asect 0xdead #added this adress to check it in logisim RAM
+restart:
+    ldi r6,0xcccc
+    ld r6,r6
+    if
+        ldi r5,24
+        cmp r6,r5
+    is eq
+        ldi r5,0xb001
+        ld r5,r4
+        inc r4
+        stb r5,r4
+    fi
+    if
+        ldi r5,48
+        cmp r6,r5
+    is eq
+        ldi r5,0xb002
+        ld r5,r4
+        inc r4
+        stb r5,r4
+    fi
+    if
+        ldi r5,72
+        cmp r6,r5
+    is eq
+        halt
+    fi
 
+    ldi r6,0
+    ldi r5,bricks4
+    ldi r4, bricks5
+    while
+        cmp r6,8
+    stays lt
+        ldi r3,0
+        stb r5,r3
+        stb r4,r3
+        ldi r3,1
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        inc r6
+    wend
+
+    ldi r6,0
+    ldi r5,bricks7
+    ldi r4, bricks8
+    while
+        cmp r6,8
+    stays lt
+        ldi r3,0
+        stb r5,r3
+        stb r4,r3
+        ldi r3,1
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        inc r6
+    wend
+  
+    ldi r6,0
+    ldi r5,bricks10
+    ldi r4, bricks11
+    while
+        cmp r6,8
+    stays lt
+        ldi r3,0
+        stb r5,r3
+        stb r4,r3
+        ldi r3,1
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        stb r5,r3
+        stb r4,r3
+        add r5,2
+        add r4,2
+        inc r6
+    wend
+    reset
+    rts
 bricks4: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 bricks5: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
