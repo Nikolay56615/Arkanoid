@@ -24,20 +24,18 @@ default_handler>
 rsect main
 
 main>
-#r4 - temporary register for x/y coordinate to pre-calculate
-#r5 - has an adress of brick 
-#r6 - score (0xcccc)
+
 ei
 ldi r0,128 #x-coordinate
-ldi r1,0xa000 #x-velocity
+ldi r1,0xa000 #random x-velocity
 ldb r1,r1
 ldi r2,224 #y-coordinate
-ldi r3,0xa001 # y-velocity
+ldi r3,0xa001 #random y-velocity
 ldb r3,r3
 neg r3
 ldi r6,248
 while
-    ldi r6,248
+    ldi r6,248  #comparing y-coordinate
     cmp r2,r6
 stays lt
     ldi r5,0xa002
@@ -122,7 +120,7 @@ stays lt
     ###checking block collision sideways section
     if
         ldi r6,88
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+        cmp r2,r6 #checking for sideways collisions for every row
     is ge, and
         ldi r6,95
         cmp r2,r6
@@ -134,8 +132,6 @@ stays lt
         shr r4
         shr r4
         shr r4
-        #ldi r6,0b0000000000011111
-        #and r6, r4
         add r5,r4,r5
         add r5,r4,r5
         push r1
@@ -218,7 +214,7 @@ stays lt
 
     if
         ldi r6,80
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+        cmp r2,r6 
     is ge, and
         ldi r6,87
         cmp r2,r6
@@ -230,8 +226,6 @@ stays lt
         shr r4
         shr r4
         shr r4
-        #ldi r6,0b0000000000011111
-        #and r6, r4
         add r5,r4,r5
         add r5,r4,r5
         push r1
@@ -319,7 +313,7 @@ stays lt
 
     if
         ldi r6,64
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+        cmp r2,r6 
     is ge, and
         ldi r6,71
         cmp r2,r6
@@ -412,7 +406,7 @@ stays lt
 
     if
         ldi r6,56
-        cmp r2,r6 #checking for every row, if corner pixel has been beaten sboku or snizu - If because of adding x - sboku----------------------------------------
+        cmp r2,r6 
     is ge, and
         ldi r6,63
         cmp r2,r6
