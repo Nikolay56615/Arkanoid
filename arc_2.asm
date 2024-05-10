@@ -43,7 +43,7 @@ stays lt
     ldi r5,0xa002
     ldb r5,r5
     if
-        cmp r5,1
+        cmp r5,1   #checking for reset
     is eq
         ldi r6,0xcccc
         ldi r5,0
@@ -56,7 +56,7 @@ stays lt
         cmp r6,24
     is eq,and
         ldi r5,0xb001
-        ldb r5,r5
+        ldb r5,r5       #checking for new levels
         cmp r5,0
     is eq
     then
@@ -719,7 +719,7 @@ stays lt
     move r4,r2
 
     if
-        ldi r6,232
+        ldi r6,232  #checking collisions with a bat
         cmp r2,r6
     is ge, and
         ldi r6,239
@@ -735,7 +735,7 @@ stays lt
         if
             cmp r6,r4
         is eq
-            neg r3
+            neg r3   # if ball hits edge pixels of bat, vx and vy velocities are being negated, if ball hits central pixel - only vy
             neg r1
             ldi r6,0xa001
             ldb r6,r6
@@ -1602,15 +1602,15 @@ stays eq
     fi
 wend
 halt
-#asect 0xdead #added this adress to check it in logisim RAM
-restart:
+
+restart: #subroutine that called if reset or level ends
     ldi r6,0xcccc
     ld r6,r6
     if
         ldi r5,24
         cmp r6,r5
     is eq
-        ldi r5,0xb001
+        ldi r5,0xb001 #setting the flag, that restart procedure happened to this score value
         ld r5,r4
         inc r4
         stb r5,r4
@@ -1633,7 +1633,7 @@ restart:
 
     ldi r6,0
     ldi r5,bricks4
-    ldi r4, bricks5
+    ldi r4, bricks5 #rewriting the arrays of blocks
     while
         cmp r6,8
     stays lt
@@ -1711,8 +1711,10 @@ restart:
         add r4,2
         inc r6
     wend
-    reset
+    reset #reseting the programm
     rts
+
+# arrays of blocks
 bricks4: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 bricks5: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
@@ -1724,4 +1726,4 @@ bricks11: dc 0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0
 
 
 end.
-# need to change coordinate system, because in this version ball can only reflect by corner of brick
+
