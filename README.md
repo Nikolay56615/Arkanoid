@@ -1,2 +1,2 @@
-# Arcanoid
-Arcanoid made on Logisim and Cdm16
+# Arkanoid
+Arkanoid made on Logisim and Cdm16
