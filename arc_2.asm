@@ -83,7 +83,7 @@ stays lt
     is eq
         halt
     fi
-    add r1,r0,r4 #we use r4 register to pre-calculate y-coordinate for correct display of the ball
+    add r1,r0,r4 #we use r4 register to pre-calculate x-coordinate for correct display of the ball
     #checking wall collisions by x-coordinate
     if 
         ldi r6, 255
