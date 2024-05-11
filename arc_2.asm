@@ -38,7 +38,6 @@ ldi r2,224 #y-coordinate
 ldi r3,0xa001 #random y-velocity
 ldb r3,r3
 neg r3
-ldi r6,248
 while
     ldi r6,248  #comparing y-coordinate
     cmp r2,r6
