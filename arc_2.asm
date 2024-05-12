@@ -50,6 +50,10 @@ stays lt
         ldi r6,0xcccc
         ldi r5,0
         st r6,r5
+        ldi r6,0xb001
+        stb r6,r5
+        ldi r6,0xb002
+        stb r6,r5
         jsr restart # if reset signal is 1, jump to restart subroutine
     fi
     ldi r6,0xcccc
