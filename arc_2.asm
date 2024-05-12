@@ -1586,6 +1586,10 @@ stays eq
         ldi r6,0xcccc # if reset signal equals 1 - jump to restart subroutine
         ldi r5,0
         st r6,r5
+        ldi r6,0xb001
+        stb r6,r5
+        ldi r6,0xb002
+        stb r6,r5
         jsr restart
     fi
 wend
